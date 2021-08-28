@@ -1,0 +1,27 @@
+---
+layout: article
+title: Help
+
+---
+
+## Markdown ⬇️
+
+Check out the [mdsvex](https://mdsvex.com/) site for what you can do with svelte markdown.
+
+You don't have to setup the mdsvex - it's ready to go! But you can use all the `frontmatter`, `<Components />`, 
+`<Components {withProps} />` that mdsvex gives to you. 
+
+## Fork & Borrow 🍴
+
+Don't start from scratch. Surf the gallery for work that others have built, and build cool stuff on top of what they've already built.
+
+## Save! 💾
+
+Save your stuff to Web3! This is the decentralized internet. Places like [Arweave](https://www.arweave.org/), [IPFS](https://ipfs.io/), or [both](https://ipfs2arweave.com/)!
+
+- IPFS: Free, but temporary
+- Arweave: less than $0.01
+
+## Adjust Splitscreen ↔️
+
+Move the left/right splitscreen by grabbing the middle 

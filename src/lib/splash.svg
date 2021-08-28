@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2391" height="1948" overflow="hidden"
+	><defs /><defs><clipPath id="a"><path d="M1239 288h2391v1948H1239z" /></clipPath></defs><g
+		clip-path="url(#a)"
+		transform="translate(-1239 -288)"
+		><path
+			fill="#BDD7EE"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="12.6"
+			d="M2249.2 320.8l476.4 126L2614.4 867l-476.3-126z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="rotate(14.8 -1144.7 9406)">CSS</text
+		><path
+			fill="#BDD7EE"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="12.6"
+			d="M1790.6 429L2265 296l117.5 418.5-474.4 133.2z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="rotate(-15.7 3303.6 -6686.6)">JavaScript</text
+		><path
+			fill="#BDD7EE"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="12.6"
+			d="M1349.8 412l487.6-71.1 62.7 430.1-487.6 71z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="rotate(-8.3 5178.8 -9641)">Markdow<tspan x="329.2" y="-.5">n</tspan></text
+		><path
+			fill="#BDD7EE"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="12.6"
+			d="M2062.6 825l453.2-193.4 170.5 399.9-453.2 193.3z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="rotate(-23.1 3603.4 -4973.1)"
+			>Back<tspan x="160.9" y=".1">-</tspan><tspan x="186.2" y="0">end</tspan></text
+		><path
+			fill="#BDD7EE"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="12.6"
+			d="M1823.7 630.5l471.6 142.8-126 416-471.6-142.8z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="rotate(16.8 -2084 6614.9)"
+			>Front<tspan x="181.9" y="-.8">-</tspan><tspan x="207.3" y="-.1">End</tspan></text
+		><path
+			fill="#BDD7EE"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="12.6"
+			d="M1248.2 820.9L1691.7 606l189.5 391.3-443.5 214.7z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="rotate(-25.8 2911.7 -2591)">Templates</text
+		><path
+			fill="#FFF"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M3209 2021.3c0-2.4 2-4.3 4.3-4.3h149.4c2.4 0 4.3 2 4.3 4.3v196.4c0 2.4-2 4.3-4.3 4.3h-149.4c-2.4 0-4.3-2-4.3-4.3z"
+		/><path
+			fill="#FFF"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M1760 1947a79 79 0 0179-79h1704a79 79 0 0179 79h0a79 79 0 01-79 79H1839a79 79 0 01-79-79z"
+		/><path
+			fill="#FFF"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M2911 1940.5c0-29 23.5-52.5 52.5-52.5h0c29 0 52.5 23.5 52.5 52.5v3c0 29-23.5 52.5-52.5 52.5h0c-29 0-52.5-23.5-52.5-52.5zM3095 1941a53 53 0 0153-53h0a53 53 0 0153 53v2a53 53 0 01-53 53h0a53 53 0 01-53-53zM3280 1940.5c0-29 23.5-52.5 52.5-52.5h0c29 0 52.5 23.5 52.5 52.5v3c0 29-23.5 52.5-52.5 52.5h0c-29 0-52.5-23.5-52.5-52.5zM3465 1940.5c0-29 23.5-52.5 52.5-52.5h0c29 0 52.5 23.5 52.5 52.5v3c0 29-23.5 52.5-52.5 52.5h0c-29 0-52.5-23.5-52.5-52.5zM2541 1940.5c0-29 23.5-52.5 52.5-52.5h0c29 0 52.5 23.5 52.5 52.5v3c0 29-23.5 52.5-52.5 52.5h0c-29 0-52.5-23.5-52.5-52.5zM2726 1940.5c0-29 23.5-52.5 52.5-52.5h0c29 0 52.5 23.5 52.5 52.5v3c0 29-23.5 52.5-52.5 52.5h0c-29 0-52.5-23.5-52.5-52.5z"
+		/><path
+			fill="#E7E6E6"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M1277 1050c11.3 80.8 452.7 368 679 552 230.6-184 695.8-471.2 692-552H1277zM2473 1312.7c0-14.7 12-26.7 26.7-26.7h37.5c14.8 0 26.8 12 26.8 26.7v739.6c0 14.7-12 26.7-26.8 26.7h-37.5c-14.7 0-26.7-12-26.7-26.7z"
+		/><path
+			fill="#E7E6E6"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M1420 1263.2c0-13.9 11.3-25.2 25.2-25.2h1034.6c13.9 0 25.2 11.3 25.2 25.2v872.5c0 14-11.3 25.2-25.2 25.2H1445.2c-13.9 0-25.2-11.3-25.2-25.2z"
+		/><path
+			fill="#E7E6E6"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M1273 2132.7c0-1.5 1.2-2.7 2.7-2.7h1365.6c1.5 0 2.7 1.2 2.7 2.7v93.6c0 1.5-1.2 2.7-2.7 2.7H1275.7a2.7 2.7 0 01-2.7-2.7z"
+		/><path
+			fill="#0CE826"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M2197 1562c0-74 61.1-134 136.5-134s136.5 60 136.5 134-61.1 134-136.5 134-136.5-60-136.5-134z"
+		/><path
+			fill="#FFF"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="21.8"
+			d="M2333 1565.8l63.9-52.8"
+		/><path
+			fill="red"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M2327 1429c-2.8 35.6-2.8 172.9 0 272.7-66.6 5.6-130-61-130-136.4 0-75.3 58.2-136.3 130-136.3z"
+		/><path
+			fill="#BFBFBF"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M2197 1564c35.6 3 172.9 3 272.7 0 5.6 70.2-61 137-136.4 137a136.7 136.7 0 01-136.3-137z"
+		/><path
+			fill="#FFF"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M1528 1432h617v243h-617z"
+		/><text
+			font-family="Courier New,Courier New_MSFontService,sans-serif"
+			font-size="92"
+			font-weight="700"
+			transform="translate(1589.1 1580)">Building…</text
+		><path
+			fill="#FFF"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M1867 1725h227v85h-227z"
+		/><path
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M1907 1767.5c0-7.5 6.3-13.5 14-13.5s14 6 14 13.5-6.3 13.5-14 13.5-14-6-14-13.5zM1969 1767.5a13.5 13.5 0 1127 0 13.5 13.5 0 01-27 0zM2031 1767.5a13.5 13.5 0 1127 0 13.5 13.5 0 01-27 0z"
+		/><path
+			fill="none"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="13.8"
+			d="M2796.7 1431H2636M2797.4 1499H2717M2798 1566l-38 1.7"
+		/><path fill="#F7DF1E" d="M2815 1424h493v434h-493z" /><path
+			fill="#FFF"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="4.6"
+			d="M3095.5 1740.5c0-45.8 39.2-83 87.5-83s87.5 37.2 87.5 83-39.2 83-87.5 83-87.5-37.2-87.5-83z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="translate(3134 1768)">AR</text
+		><path
+			fill="#FFF"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="4.6"
+			d="M2852.5 1741l108.5-108.5 108.5 108.5-108.5 108.5z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="translate(2889.4 1768)">IPFS</text
+		><path
+			fill="#FFF"
+			fill-rule="evenodd"
+			stroke="#000"
+			stroke-miterlimit="8"
+			stroke-width="4.6"
+			d="M2849.5 1594.5l46.4-126h185.6l-46.4 126z"
+		/><text
+			font-family="Calibri,Calibri_MSFontService,sans-serif"
+			font-size="83"
+			font-weight="700"
+			transform="translate(2900.2 1559)">SOL<tspan x="-1432.3" y="501">WEB3BUIDLR</tspan></text
+		><path
+			fill="#009416"
+			fill-rule="evenodd"
+			d="M3349 1342c-83.8 127.3-109 201.3-118.8 244.3-4 8.3-30.4 8.9-37.9 1.7-16-55.6-26.8-82.3-47.3-111.8 6.2-10.6 15-12 32.7-8.6 8.3 6.6 18.4 23.5 31.9 58.5 13.7-47.6 75.7-157.1 103.3-189.3 21.8-11.4 29.8-4 36.1 5.2z"
+		/></g
+	></svg
+>

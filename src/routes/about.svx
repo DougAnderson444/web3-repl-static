@@ -1,0 +1,20 @@
+---
+layout: article
+title: About Web3 BUIDLER
+
+---
+
+This is a Web3 app builder. 
+
+It works right in the browser! 
+
+The idea here is to give you an easy way to create stuff on the web, and deploy it to Web 3.0
+
+Reuse components from others (free & paid)! You can make your own from scratch or fork someone else's code. You can even embed other people's components into yours, by typing the following into your `App.svx`:
+
+```js
+// just add already made components
+<Component {properties} />
+```
+
+Check out the [/help](/help) page for more tips!
