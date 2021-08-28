@@ -147,7 +147,7 @@ export const code_2 = `<script>
 {#if connection}
 <h1>Connected to Solana {endpoint}</h1>
 {/if}
-Requires this token to have access: <br />
+Requires this Solana token to have access: <br />
 {tokenKey}
 <br />
 {#if hasAccess}
