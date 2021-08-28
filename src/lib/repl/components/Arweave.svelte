@@ -27,10 +27,11 @@
 	let statusBeforePost;
 	let statusAfterPost;
 	let statusAfterMine;
+	let uploadProgress = '';
 	// let current = 'loading...';
 	// let mounted = false;
 	let dataTransaction;
-	let srcData;
+	let sourceData;
 	let cost;
 	let cost_in_ar;
 	let ar_price;
@@ -50,9 +51,7 @@
 		host: 'arweave.net'
 	};
 
-	console.log('Dev?', import.meta.env.DEV);
 	let dev = import.meta.env.DEV || false;
-
 	let arConfig = dev ? testConfig : liveConfig;
 
 	onMount(() => {
@@ -61,6 +60,8 @@
 
 	async function init() {
 		arweave = Arweave.init(arConfig);
+
+		console.log({ arweave });
 
 		try {
 			let networkInfo = await arweave.network.getInfo();
@@ -76,7 +77,6 @@
 			const generatedAddr = await arweave.wallets.getAddress(await testWeave.rootJWK);
 			// await testWeave.drop(generatedAddr, '10000');
 			const generatedAddressBalance = await arweave.wallets.getBalance(generatedAddr);
-			console.log({ generatedAddressBalance });
 		}
 
 		let endpointResponse = await fetch(coinEndpoint);
@@ -104,12 +104,6 @@
 
 		dataTransaction.addTag('Content-Type', 'text/html');
 
-		await arweave.transactions.sign(dataTransaction, testWeave.rootJWK);
-
-		statusBeforePost = await arweave.transactions.getStatus(dataTransaction.id);
-		console.log({ statusBeforePost });
-		statusAfterPost = await arweave.transactions.post(dataTransaction);
-		console.log({ statusAfterPost }, { dataTransaction });
 		cost = dataTransaction.reward;
 		cost_in_ar = arweave.ar.winstonToAr(cost);
 		dataSize = dataTransaction.data_size;
@@ -117,26 +111,37 @@
 	};
 
 	const mine = async () => {
-		console.log('mining');
 		published = true;
-		try {
-			await testWeave.mine();
-		} catch (error) {
-			console.error(error);
+
+		await arweave.transactions.sign(dataTransaction, testWeave.rootJWK);
+
+		let uploader = await arweave.transactions.getUploader(dataTransaction);
+
+		while (!uploader.isComplete) {
+			await uploader.uploadChunk();
+			uploadProgress += `${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}\n`;
+			console.log(uploadProgress);
 		}
-		statusAfterMine = await arweave.transactions.getStatus(dataTransaction.id);
-		console.log({ statusAfterMine }); // this will return 200
-		srcData = await arweave.transactions.getData(dataTransaction.id, {
-			decode: true,
-			string: true
-		});
-		console.log({ srcData });
-		console.log('mining complete');
+
+		if (dev) {
+			// in dev mine it right away
+			try {
+				await testWeave.mine();
+			} catch (error) {
+				console.error(error);
+			}
+			statusAfterMine = await arweave.transactions.getStatus(dataTransaction.id);
+			console.log({ statusAfterMine }); // this will return 200
+			sourceData = await arweave.transactions.getData(dataTransaction.id, {
+				decode: true,
+				string: true
+			});
+		} else {
+			// wait for a couple of blocks?
+		}
 	};
 
 	$: serializedSource && testWeave && handleCreateTx();
-	// $: publish && mine();
-	// $: visible = preview || publish;
 </script>
 
 <svelte:head>
@@ -147,21 +152,23 @@
 	{#if !costPerByte}
 		Preparing preview...
 	{:else}
-		<button on:click={mine}>Publish ❔</button>
-		<br />Cost is {parseFloat(cost_in_ar).toFixed(8)}AR @ {ar_price}/AR (pay {Number(
-			cost_in_ar * ar_price * 100
-		).toLocaleString('en-US', {
-			style: 'currency',
-			currency: 'USD'
-		})} once, use forever)
+		<button on:click={mine}>Publish 🚀</button>
+		<div class="estimate">
+			Cost is {parseFloat(cost_in_ar).toFixed(7)}AR (about {Number(
+				cost_in_ar * ar_price * 100
+			).toLocaleString('en-US', {
+				style: 'currency',
+				currency: 'USD'
+			})} once, then use forever)
+		</div>
 	{/if}
-{:else if srcData}
+{:else if sourceData}
 	✔️ Published to <a
 		href="http://localhost:1984/{dataTransaction.id}/?account={account}"
 		target="_blank">Arweave Permaweb</a
 	>
 {:else}
-	Mining...
+	Uploading... {uploadProgress}
 {/if}
 {#if dataTransaction?.id}
 	<!-- <br />Tx.id: {dataTransaction.id} -->
@@ -183,5 +190,17 @@
 	}
 	.not-connected {
 		color: rgb(214, 93, 93);
+	}
+	div.estimate {
+		margin-top: 0.5em;
+	}
+	button {
+		color: #1f1f1f;
+		letter-spacing: 0.05em;
+		font-weight: 600;
+		background-color: var(--accent-color);
+		border: 1px solid rgba(85, 85, 85, 0.521);
+		border-radius: 4px;
+		padding: 0.5em 1em;
 	}
 </style>
