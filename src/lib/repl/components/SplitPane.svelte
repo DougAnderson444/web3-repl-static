@@ -6,14 +6,15 @@
 	export let pos: number = 50;
 	export let fixed: boolean = false;
 	export let buffer: number = 42;
-	export let min: number;
-	export let max: number;
-
-	const dispatch: any = createEventDispatcher();
 
 	let w;
 	let h;
 	$: size = type === 'vertical' ? h : w;
+
+	export let min: number = 100 * (buffer / size);
+	export let max: number = 100 - min;
+
+	const dispatch: any = createEventDispatcher();
 
 	$: min = 100 * (buffer / size);
 	$: max = 100 - min;
