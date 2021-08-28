@@ -11,7 +11,6 @@
 	import type { Component } from './types';
 	import { components, currentID, currentIndex } from './js/store.js';
 
-	import { ImmortalDB } from 'immortal-db';
 	// import Saver from "./js/ipfs-saver.js";
 	import { is_browser } from './js/env.js';
 
@@ -32,6 +31,7 @@
 	let module_editor;
 	// let saveStatus;
 	// let saver;
+	let compile;
 
 	$: type = orientation === 'rows' ? 'vertical' : 'horizontal';
 	$: pos = fixed ? fixedPos : orientation === 'rows' ? 50 : 50;
@@ -82,6 +82,8 @@
 			global.Buffer = Buffer.Buffer;
 		});
 
+		const { ImmortalDB } = await import('immortal-db');
+
 		// init IPFS saver
 		// saver = is_browser && new Saver();
 		// check for last used components
@@ -98,6 +100,22 @@
 			// intial defaults
 			components.set(defaultComps);
 		}
+
+		// only init compile in the browser, not SSR server side
+		compile = async function (_components: Component[]): Promise<void> {
+			// post data msg to compiler
+			if (timer) {
+				clearTimeout(timer); // cancel any exisitng waiting
+			}
+			timer = setTimeout(async () => {
+				timer = 0;
+				worker.postMessage(_components);
+
+				// also update store
+				await ImmortalDB.set(COMPONENTS_KEY, JSON.stringify(_components));
+			}, 400);
+		};
+
 		mounted = true;
 	});
 
@@ -118,20 +136,6 @@
 		// 	compiled,
 		// });
 	});
-
-	async function compile(_components: Component[]): Promise<void> {
-		// post data msg to compiler
-		if (timer) {
-			clearTimeout(timer); // cancel any exisitng waiting
-		}
-		timer = setTimeout(async () => {
-			timer = 0;
-			worker.postMessage(_components);
-
-			// also update store
-			await ImmortalDB.set(COMPONENTS_KEY, JSON.stringify(_components));
-		}, 400);
-	}
 
 	// pass these functions down to child components
 	setContext('REPL', {
@@ -166,7 +170,7 @@
 	});
 
 	// compile whenever non-null components change ($:)
-	$: $components && compile($components);
+	$: $components && compile && compile($components);
 </script>
 
 <svelte:head>
