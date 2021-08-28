@@ -16,6 +16,7 @@ That can be saved/deployed to IPFS, pinned on the Arweave permaweb, and tokenize
 - [x] IPFS
 - [x] Arweave 
 - [ ] Hypercore 
+- [ ] Linked as a [DID service](https://www.w3.org/TR/did-core/#dfn-service) 😉
 
 
 ## Tokenization 
