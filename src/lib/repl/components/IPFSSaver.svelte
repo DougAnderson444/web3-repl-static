@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import Saver from '../js/ipfs-saver.js';
 	import { components } from '../js/store.js';
 
@@ -6,24 +7,25 @@
 	import { fade } from 'svelte/transition';
 	import { is_browser } from '../js/env.js';
 
-	export let saveStatus;
-	export let error = false;
 	export let serializedSource;
-
-	// init IPFS saver
-	let saver = is_browser && new Saver();
+	let saver;
 	let rootCID;
+	let saveSrc;
 
-	$: serializedSource && saveSrc();
+	onMount(() => {
+		// init IPFS saver
+		saver = is_browser && new Saver();
+		saveSrc = async () => {
+			// console.log('serializedSource changed');
+			const result = await saver.add({
+				path: 'index.html',
+				content: serializedSource
+			});
+			rootCID = result.cid;
+		};
+	});
 
-	const saveSrc = async () => {
-		// console.log('serializedSource changed');
-		const result = await saver.add({
-			path: 'index.html',
-			content: serializedSource
-		});
-		rootCID = result.cid;
-	};
+	$: serializedSource && saveSrc && saveSrc();
 </script>
 
 <div class="inner">
@@ -50,15 +52,6 @@
 			<p transition:fade>Something went wrong: {error.message}</p>
 		{/await}
 	{/if}
-	<div class="overlay">
-		{#if error}
-			<Message kind="error" details={error} />
-		{:else if saveStatus}
-			<Message kind="info" truncate>
-				{saveStatus || 'ready to save...'}
-			</Message>
-		{/if}
-	</div>
 </div>
 
 <style>
@@ -71,9 +64,4 @@
 	/* .inner {
 		min-height: fit-content;
 	} */
-	.overlay {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-	}
 </style>
