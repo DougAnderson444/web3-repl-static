@@ -1,6 +1,6 @@
 {
   "name": "web3-repl-static",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev3003": "npm run dev -- --open --port 3003",
     "dev": "svelte-kit dev",
@@ -14,6 +14,7 @@
   "devDependencies": {
     "@originjs/vite-plugin-commonjs": "^1.0.0-beta7",
     "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@sveltejs/adapter-static": "^1.0.0-next.17",
     "@sveltejs/adapter-vercel": "^1.0.0-next.27",
     "@sveltejs/kit": "^1.0.0-next.156",
@@ -28,6 +29,7 @@
     "prettier-plugin-svelte": "^2.2.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-string": "^3.0.0",
     "rollup-plugin-web-worker-loader": "^1.6.1",
     "sass": "^1.38.1",
     "svelte": "^3.34.0",
