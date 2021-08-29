@@ -1,0 +1,7 @@
+{
+    "name":"web3-repl-token",
+    "version": "0.0.1",
+    "scripts": {
+        "create": "npx smartweave create ./token-pst.js initial-state.json --key-file ../arweave-keyfile.json"
+    }
+}

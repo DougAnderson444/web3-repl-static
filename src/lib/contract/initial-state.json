@@ -1,0 +1,9 @@
+{
+    "name": "WEB3REPL",
+    "ticker": "W3R",
+    "owner": "N7Hh8OC0VMEhJpM-aXcuaPevh_b05qseyh1xQCH3KiE",
+    "canEvolve": true,
+    "balances": {
+        "N7Hh8OC0VMEhJpM-aXcuaPevh_b05qseyh1xQCH3KiE": 31415926
+    }
+}
