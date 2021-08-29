@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import TestWeaveSDK from 'testweave-sdk';
 	import Arweave from 'arweave';
+	import ArWallet from '$lib/ArWallet.svelte';
 
 	// import Notify from './Notify.svelte';
 	// import { inlineSource } from 'inline-source';
@@ -56,6 +57,7 @@
 
 	onMount(() => {
 		init();
+		// console.log('window.arweaveWallet', window.arweaveWallet);
 	});
 
 	async function init() {
@@ -148,19 +150,22 @@
 	<!-- Originally, the npm instal arweave wasnt working for web, so i had to do this: -->
 	<!-- <script src="https://unpkg.com/arweave/bundles/web.bundle.js"></script> -->
 </svelte:head>
+
+<ArWallet />
+
 {#if !published}
 	{#if !costPerByte}
 		Preparing preview...
 	{:else}
-		<button on:click={mine}>Publish 🚀</button>
 		<div class="estimate">
-			Cost is {parseFloat(cost_in_ar).toFixed(7)}AR (about {Number(
+			Publish for a mere {parseFloat(cost_in_ar).toFixed(7)}AR (about {Number(
 				cost_in_ar * ar_price * 100
 			).toLocaleString('en-US', {
 				style: 'currency',
 				currency: 'USD'
 			})} once, then use forever)
 		</div>
+		<button on:click={mine}>Publish 🚀</button>
 	{/if}
 {:else if sourceData}
 	✔️ Published to <a
