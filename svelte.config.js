@@ -4,6 +4,8 @@ import staticAdapter from '@sveltejs/adapter-static';
 import { mdsvex } from 'mdsvex';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import rollupCommonjs from '@rollup/plugin-commonjs'
+import { string } from "rollup-plugin-string";
+import json from '@rollup/plugin-json';
 
 import globals from 'rollup-plugin-node-globals'
 import builtins from 'rollup-plugin-node-builtins'
@@ -57,6 +59,11 @@ const config = {
 				webWorkerLoader({
 					targetPlatform: 'auto',
 					sourcemap: false
+				}),
+				json(),
+				string({
+					// Required to be specified
+					include: "./src/lib/contract/token-pst.js",
 				}),
 				// rollupCommonjs(), // doesnt seem to work well
 				viteCommonjs(), 
