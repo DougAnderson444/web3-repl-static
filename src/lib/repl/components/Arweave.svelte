@@ -1,12 +1,14 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
-	import TestWeaveSDK from 'testweave-sdk';
 	import Arweave from 'arweave';
 	import ArWallet from '$lib/ArWallet.svelte';
+	import { prepOrder, sendOrder } from '$lib/utils/index';
 
 	// import Notify from './Notify.svelte';
 	// import { inlineSource } from 'inline-source';
 	import { inlineSource } from '@DougAnderson444/inline-source';
+	import { CONTRACT_ID, APP_WALLET } from '$lib/utils/constants';
+	import type { Transactions } from '$lib/utils';
 
 	export let serializedSource;
 	// export let details;
@@ -32,6 +34,7 @@
 	// let current = 'loading...';
 	// let mounted = false;
 	let dataTransaction;
+	let orderTransactions;
 	let sourceData;
 	let cost;
 	let cost_in_ar;
@@ -40,6 +43,8 @@
 	let dataSize;
 	let connected;
 	let published = false;
+	let keyfile;
+	let initialized;
 
 	const testConfig = {
 		host: 'localhost',
@@ -55,15 +60,17 @@
 	let dev = import.meta.env.DEV || false;
 	let arConfig = dev ? testConfig : liveConfig;
 
-	onMount(() => {
-		init();
+	let contractID = !dev && CONTRACT_ID; // default to production?
+	let appWallet = !dev && APP_WALLET; // default to production
+
+	onMount(async () => {
+		await init();
+		initialized = true;
 		// console.log('window.arweaveWallet', window.arweaveWallet);
 	});
 
 	async function init() {
 		arweave = Arweave.init(arConfig);
-
-		console.log({ arweave });
 
 		try {
 			let networkInfo = await arweave.network.getInfo();
@@ -73,12 +80,27 @@
 		}
 
 		if (dev) {
+			console.log({ dev });
+
 			// init TestWeaveSDK on the top of arweave
-			testWeave = await TestWeaveSDK.init(arweave);
-			// testWeave.rootJWK
-			const generatedAddr = await arweave.wallets.getAddress(await testWeave.rootJWK);
-			// await testWeave.drop(generatedAddr, '10000');
-			const generatedAddressBalance = await arweave.wallets.getBalance(generatedAddr);
+			const TestWeaveSDK = await import('testweave-sdk');
+			testWeave = await TestWeaveSDK.default.init(arweave);
+			keyfile = testWeave.rootJWK;
+			appWallet = await arweave.wallets.getAddress(keyfile);
+
+			const { deploy } = await import('$lib/contract/deploy.js');
+			console.log('wallet address', { appWallet });
+			console.log('deployed to keyfile', { appWallet });
+			contractID = await deploy({ client: arweave, wallet: keyfile, address: appWallet }); // generate a testWeave contractID
+			console.log('contractID created', { contractID });
+
+			try {
+				await testWeave.mine(); // mine the contract
+			} catch (error) {
+				console.error(error);
+			}
+		} else {
+			keyfile = 'use_wallet';
 		}
 
 		let endpointResponse = await fetch(coinEndpoint);
@@ -97,25 +119,40 @@
 				inlinedSource = serializedSource;
 			}
 
-		dataTransaction = await arweave.createTransaction(
-			{
-				data: inlinedSource
-			},
-			testWeave.rootJWK
-		);
+		const orderTransactions: Transactions = await prepOrder({
+			client: arweave,
+			keyfile,
+			data: inlinedSource,
+			contractID,
+			appWallet
+		});
 
-		dataTransaction.addTag('Content-Type', 'text/html');
+		console.log('Prepd', { orderTransactions });
 
-		cost = dataTransaction.reward;
-		cost_in_ar = arweave.ar.winstonToAr(cost);
+		dataTransaction = orderTransactions.txs.dataTx;
+
+		console.log({ dataTransaction });
+
+		cost = orderTransactions.ar;
+
+		console.log({ cost });
+
+		cost_in_ar = arweave.ar.winstonToAr(dataTransaction.reward);
+		console.log({ cost_in_ar });
+
 		dataSize = dataTransaction.data_size;
-		costPerByte = cost_in_ar / dataTransaction.data_size;
+		console.log({ dataSize });
+
+		costPerByte = (cost_in_ar / dataTransaction.data_size) * 1073741824;
+		console.log({ costPerByte });
 	};
 
 	const mine = async () => {
+		sendOrder({ client: arweave, keyfile, txs: orderTransactions });
+
 		published = true;
 
-		await arweave.transactions.sign(dataTransaction, testWeave.rootJWK);
+		await arweave.transactions.sign(dataTransaction, keyfile);
 
 		let uploader = await arweave.transactions.getUploader(dataTransaction);
 
@@ -143,7 +180,7 @@
 		}
 	};
 
-	$: serializedSource && testWeave && handleCreateTx();
+	$: serializedSource && keyfile && initialized && handleCreateTx();
 </script>
 
 <svelte:head>
@@ -158,12 +195,15 @@
 		Preparing preview...
 	{:else}
 		<div class="estimate">
-			Publish for a mere {parseFloat(cost_in_ar).toFixed(7)}AR (about {Number(
-				cost_in_ar * ar_price * 100
-			).toLocaleString('en-US', {
+			PermaPublish for a mere {parseFloat(cost).toFixed(7)}<a
+				href="https://www.coingecko.com/en/coins/arweave"
+				target="_blank">AR</a
+			>
+			(about {Number(cost * ar_price).toLocaleString('en-US', {
 				style: 'currency',
-				currency: 'USD'
-			})} once, then use forever)
+				currency: 'USD',
+				minimumFractionDigits: 4
+			})} paid once, then <a href="https://www.arweave.org/" target="_blank"> use forever</a>)
 		</div>
 		<button on:click={mine}>Publish 🚀</button>
 	{/if}
