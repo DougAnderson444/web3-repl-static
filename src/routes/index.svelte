@@ -40,7 +40,7 @@
 
 	.welcome img {
 		width: 60%;
-		max-width: 800px;
+		max-width: 350px;
 		margin: 0.5em;
 		height: auto;
 		display: inline-block;
