@@ -2,14 +2,17 @@ const Arweave = require("arweave");
 const { createContract } = require("smartweave");
 const fs = require("fs");
 
-import { default as src } from "./token-pst.js"
+import * as src from "./token-pst.js"
 import state from "./initial-state.json"
 
-export const deploy = async ({ client, wallet, address }) => {
+export const deploy = async ({ 
+  client, wallet, address, 
+  initBalance = 9999999 // optional init balance, else random owner amt
+}) => {
   state.owner = address
   state.balances = {}
-  state.balances[address] = 100111222
-  console.log({client, wallet, address, state, src})
-  const id = await createContract(client, wallet, src, JSON.stringify(state));
+  state.balances[address] = initBalance 
+  const source = src.default
+  const id = await createContract(client, wallet, source, JSON.stringify(state));
   return id
 }
