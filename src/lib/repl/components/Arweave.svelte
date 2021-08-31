@@ -28,8 +28,8 @@
 	let arweave;
 	let testWeave;
 	let statusBeforePost;
-	let statusAfterPost;
-	let statusAfterMine;
+	let afterPost;
+	let afterMine;
 	let uploadProgress = '';
 	// let current = 'loading...';
 	// let mounted = false;
@@ -39,7 +39,7 @@
 	let cost;
 	let cost_in_ar;
 	let ar_price;
-	let costPerByte;
+	let costPerGByte;
 	let dataSize;
 	let connected;
 	let published = false;
@@ -89,13 +89,18 @@
 			appWallet = await arweave.wallets.getAddress(keyfile);
 
 			const { deploy } = await import('$lib/contract/deploy.js');
-			console.log('wallet address', { appWallet });
-			console.log('deployed to keyfile', { appWallet });
 			contractID = await deploy({ client: arweave, wallet: keyfile, address: appWallet }); // generate a testWeave contractID
 			console.log('contractID created', { contractID });
 
+			const after = await arweave.transactions.getStatus(contractID);
+			console.log({ after }); // this will return 202
+
+			if (after.status !== 202) new Error('error, contract not deployed'); // TODO: handle better
+
 			try {
+				console.log('Mining...');
 				await testWeave.mine(); // mine the contract
+				console.log('Mined!');
 			} catch (error) {
 				console.error(error);
 			}
@@ -143,8 +148,8 @@
 		dataSize = dataTransaction.data_size;
 		console.log({ dataSize });
 
-		costPerByte = (cost_in_ar / dataTransaction.data_size) * 1073741824;
-		console.log({ costPerByte });
+		costPerGByte = (cost_in_ar / dataTransaction.data_size) * 1073741824;
+		console.log({ costPerGByte: costPerGByte.toFixed(2) });
 	};
 
 	const mine = async () => {
@@ -169,8 +174,8 @@
 			} catch (error) {
 				console.error(error);
 			}
-			statusAfterMine = await arweave.transactions.getStatus(dataTransaction.id);
-			console.log({ statusAfterMine }); // this will return 200
+			afterMine = await arweave.transactions.getStatus(dataTransaction.id);
+			console.log({ afterMine }); // this will return 200
 			sourceData = await arweave.transactions.getData(dataTransaction.id, {
 				decode: true,
 				string: true
@@ -191,7 +196,7 @@
 <ArWallet />
 
 {#if !published}
-	{#if !costPerByte}
+	{#if !costPerGByte}
 		Preparing preview...
 	{:else}
 		<div class="estimate">
