@@ -63,7 +63,7 @@ const config = {
 				json(),
 				string({
 					// Required to be specified
-					include: "./src/lib/contract/token-pst.js",
+					include: "**/token-pst.js",
 				}),
 				// rollupCommonjs(), // doesnt seem to work well
 				viteCommonjs(), 
