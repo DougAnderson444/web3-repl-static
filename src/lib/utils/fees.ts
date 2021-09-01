@@ -55,10 +55,7 @@ export const createTokenHolderTx = async ({
   contractID, //: string
   }) /* : Promise<Transaction> */ => {
 
-  console.log({contractID})
-
   const contractState = await readContract(client, contractID)
-  console.log({contractState})
   const tipReceiver = selectWeightedPstHolder(contractState.balances)
 
   const tags = {
