@@ -11,6 +11,8 @@
 	import type { Transactions } from '$lib/utils';
 
 	export let serializedSource;
+	export let ar_price; // from load module up above
+
 	// export let details;
 	// export let preview = true;
 	// export let publish;
@@ -34,11 +36,10 @@
 	// let current = 'loading...';
 	// let mounted = false;
 	let dataTransaction;
-	let orderTransactions;
+	let orderTransactions: Transactions;
 	let sourceData;
 	let cost;
 	let cost_in_ar;
-	let ar_price;
 	let costPerGByte;
 	let dataSize;
 	let connected;
@@ -70,6 +71,8 @@
 	});
 
 	async function init() {
+		let endpointResponsePromise = fetch(coinEndpoint);
+
 		arweave = Arweave.init(arConfig);
 
 		try {
@@ -80,8 +83,6 @@
 		}
 
 		if (dev) {
-			console.log({ dev });
-
 			// init TestWeaveSDK on the top of arweave
 			const TestWeaveSDK = await import('testweave-sdk');
 			testWeave = await TestWeaveSDK.default.init(arweave);
@@ -93,7 +94,7 @@
 			console.log('contractID created', { contractID });
 
 			const after = await arweave.transactions.getStatus(contractID);
-			console.log({ after }); // this will return 202
+			console.log(after.status); // this will return 202
 
 			if (after.status !== 202) new Error('error, contract not deployed'); // TODO: handle better
 
@@ -108,7 +109,7 @@
 			keyfile = 'use_wallet';
 		}
 
-		let endpointResponse = await fetch(coinEndpoint);
+		let endpointResponse = await endpointResponsePromise;
 		let responseJson = await endpointResponse.json();
 		ar_price = responseJson.arweave.usd;
 	}
@@ -124,7 +125,7 @@
 				inlinedSource = serializedSource;
 			}
 
-		const orderTransactions: Transactions = await prepOrder({
+		orderTransactions = await prepOrder({
 			client: arweave,
 			keyfile,
 			data: inlinedSource,
@@ -132,40 +133,29 @@
 			appWallet
 		});
 
-		console.log('Prepd', { orderTransactions });
-
 		dataTransaction = orderTransactions.txs.dataTx;
-
-		console.log({ dataTransaction });
-
 		cost = orderTransactions.ar;
-
-		console.log({ cost });
-
 		cost_in_ar = arweave.ar.winstonToAr(dataTransaction.reward);
-		console.log({ cost_in_ar });
-
 		dataSize = dataTransaction.data_size;
-		console.log({ dataSize });
-
 		costPerGByte = (cost_in_ar / dataTransaction.data_size) * 1073741824;
-		console.log({ costPerGByte: costPerGByte.toFixed(2) });
+		// console.log({ costPerGByte: costPerGByte.toFixed(2) });
 	};
 
-	const mine = async () => {
-		sendOrder({ client: arweave, keyfile, txs: orderTransactions });
+	async function mine() {
+		await sendOrder({ client: arweave, keyfile, txs: orderTransactions.txs });
 
 		published = true;
 
-		await arweave.transactions.sign(dataTransaction, keyfile);
+		// sendOrder does this using post()
+		// await arweave.transactions.sign(dataTransaction, keyfile);
 
-		let uploader = await arweave.transactions.getUploader(dataTransaction);
+		// let uploader = await arweave.transactions.getUploader(dataTransaction);
 
-		while (!uploader.isComplete) {
-			await uploader.uploadChunk();
-			uploadProgress += `${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}\n`;
-			console.log(uploadProgress);
-		}
+		// while (!uploader.isComplete) {
+		// 	await uploader.uploadChunk();
+		// 	uploadProgress += `${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}\n`;
+		// 	console.log(uploadProgress);
+		// }
 
 		if (dev) {
 			// in dev mine it right away
@@ -174,8 +164,11 @@
 			} catch (error) {
 				console.error(error);
 			}
-			afterMine = await arweave.transactions.getStatus(dataTransaction.id);
-			console.log({ afterMine }); // this will return 200
+			Object.values(orderTransactions.txs).forEach(async (tx) => {
+				const afterMine = await arweave.transactions.getStatus(tx.id);
+				console.log(afterMine.status, tx.id); // this will return 200
+				console.log(`http://localhost/tx/${tx.id}/status`); //
+			});
 			sourceData = await arweave.transactions.getData(dataTransaction.id, {
 				decode: true,
 				string: true
@@ -183,7 +176,7 @@
 		} else {
 			// wait for a couple of blocks?
 		}
-	};
+	}
 
 	$: serializedSource && keyfile && initialized && handleCreateTx();
 </script>
@@ -208,7 +201,8 @@
 				style: 'currency',
 				currency: 'USD',
 				minimumFractionDigits: 4
-			})} paid once, then <a href="https://www.arweave.org/" target="_blank"> use forever</a>)
+			})} @ ${ar_price}/AR paid once, then
+			<a href="https://www.arweave.org/" target="_blank"> use forever</a>)
 		</div>
 		<button on:click={mine}>Publish 🚀</button>
 	{/if}
