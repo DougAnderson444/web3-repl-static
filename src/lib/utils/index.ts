@@ -13,11 +13,14 @@ import {
   getTxFee,
 } from "./fees";
 import { APP_WALLET, TOKEN_FACTOR, USAGE_FACTOR } from "./constants";
-export type Transactions = "ar" | Promise | { 
-  dataTx: Transaction, 
-  usageFeeTx: Transaction, 
-  tokenHolderPortionTx: Transaction
-  }
+export type Transactions = "ar" | Promise | 
+  {
+    ar: number,
+    txs: { 
+      dataTx: Transaction, 
+      usageFeeTx: Transaction, 
+      tokenHolderPortionTx: Transaction
+  }}
 
 export const prepOrder = async({
     client, //: Arweave,
@@ -60,8 +63,6 @@ export const prepOrder = async({
 
   [txf1, txf2, txf3] = (await Promise.all([txf1, txf2, txf3])) // this is faster, btw
 
-  console.log({ txf1, txf2, txf3 })
-
   const txFees = txf1 + txf2 + txf3
 
   const arAmnt = 
@@ -84,7 +85,7 @@ export const sendOrder = async ({
   keyfile, //: JWKInterface | "use_wallet" | undefined, 
   txs, //: Transactions 
   }) /* : Promise<void> */ => {
-  const promises = Object.entries(txs).map(async tx => {
+  const promises = Object.values(txs).map(async tx => {
     await client.transactions.sign(tx, keyfile);
     return client.transactions.post(tx)
   })
