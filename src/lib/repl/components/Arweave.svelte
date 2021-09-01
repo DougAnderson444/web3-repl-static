@@ -12,6 +12,7 @@
 
 	export let serializedSource;
 	export let ar_price; // from load module up above
+	export let rootCID;
 
 	// export let details;
 	// export let preview = true;
@@ -130,7 +131,8 @@
 			keyfile,
 			data: inlinedSource,
 			contractID,
-			appWallet
+			appWallet,
+			ipfsCID: rootCID
 		});
 
 		dataTransaction = orderTransactions.txs.dataTx;
