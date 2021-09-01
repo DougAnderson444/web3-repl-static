@@ -27,7 +27,8 @@ export const prepOrder = async({
     keyfile, //: JWKInterface | "use_wallet" | undefined,
     data, //: string
     contractID,
-    appWallet
+    appWallet,
+    ipfsCID = false
   }) /* : Promise<{ txs: Transaction[]; ar: number; pst: number } | string> */ => {
 
   const addr = await client.wallets.jwkToAddress(keyfile);
@@ -36,7 +37,7 @@ export const prepOrder = async({
   );
 
   // Create Tx to save the Data to Arweave
-  const dataTx = await createDataTx({client, keyfile, data})
+  const dataTx = await createDataTx({client, keyfile, data, ipfsCID})
 
   const tokenHolderFee = parseFloat(client.ar.winstonToAr((dataTx.reward * ( TOKEN_FACTOR || 1 ))))
   const tokenHolderPortionTxPromise = createTokenHolderTx({
