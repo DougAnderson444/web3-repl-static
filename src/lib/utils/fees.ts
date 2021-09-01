@@ -39,7 +39,6 @@ export const createUsageFeeTx = async ({
   appWallet, //: string
   contractID
 }) /*: Promise<Transaction> */ => {
-
   const tags = {
     App: APP_NAME,
     Type: "Usage-Fee",
