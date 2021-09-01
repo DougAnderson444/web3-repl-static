@@ -4,8 +4,7 @@ import staticAdapter from '@sveltejs/adapter-static';
 import { mdsvex } from 'mdsvex';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import rollupCommonjs from '@rollup/plugin-commonjs'
-import { string } from "rollup-plugin-string";
-import json from '@rollup/plugin-json';
+import { string as moduleToString } from "rollup-plugin-string";
 
 import globals from 'rollup-plugin-node-globals'
 import builtins from 'rollup-plugin-node-builtins'
@@ -60,8 +59,7 @@ const config = {
 					targetPlatform: 'auto',
 					sourcemap: false
 				}),
-				json(),
-				string({
+				moduleToString({
 					// Required to be specified
 					include: "**/token-pst.js",
 				}),
