@@ -9,14 +9,26 @@ export const createDataTx = async ({
   client, //: Arweave,
   keyfile, //: JWKInterface | "use_wallet" | undefined,
   data, //: string
+  ipfsCID = false
 }) /*: Promise<Transaction> */ => {
   
+  const tags = {
+    App: APP_NAME,
+    Type: "Deploy-from-Web3-Repl",
+  };
+
+  if (ipfsCID) tags['IPFS-Add'] = ipfsCID
+
     let dataTransaction = await client.createTransaction(
 			{	data }, keyfile
 		);
 
 		dataTransaction.addTag('Content-Type', 'text/html');
 
+    for (const [key, value] of Object.entries(tags)) {
+      dataTransaction.addTag(key, value);
+    }
+    console.log({dataTransaction})
     return dataTransaction
 }
 
@@ -27,6 +39,7 @@ export const createUsageFeeTx = async ({
   appWallet, //: string
   contractID
 }) /*: Promise<Transaction> */ => {
+
   const tags = {
     App: APP_NAME,
     Type: "Usage-Fee",
