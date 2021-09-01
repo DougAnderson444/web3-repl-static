@@ -12,6 +12,7 @@
 	// export let rootCID;
 	export let serializedSource: string;
 	// export let diagnostics;
+	let rootCID;
 
 	const MAX_ID = 123456789;
 
@@ -48,7 +49,7 @@
 </script>
 
 <Tabs on:select={selectComponent} on:new={new_component} />
-<IPFSSaver {serializedSource} />
-<Arweave {serializedSource} />
+<IPFSSaver {serializedSource} bind:rootCID />
+<Arweave {serializedSource} {rootCID} />
 
 <!-- <Status {diagnostics} /> -->
