@@ -9,7 +9,7 @@
 
 	export let serializedSource;
 	let saver;
-	let rootCID;
+	export let rootCID;
 	let saveSrc;
 
 	onMount(() => {
@@ -21,7 +21,7 @@
 				path: 'index.html',
 				content: serializedSource
 			});
-			rootCID = result.cid;
+			rootCID = result.cid.toString();
 		};
 	});
 
@@ -36,15 +36,15 @@
 		{:then rootCID}
 			<!-- promise was fulfilled -->
 			<p transition:fade>
-				✔️ Preview <a href="https://cloudflare-ipfs.com/ipfs/{rootCID.toString()}" target="_blank">
+				✔️ Preview <a href="https://cloudflare-ipfs.com/ipfs/{rootCID}" target="_blank">
 					{$components[0]?.name}.{$components[0]?.type}</a
 				>
 				on IPFS:
-				<!-- <a href="https://dweb.link/api/v0/dag/get?arg={rootCID.toString()}"
+				<!-- <a href="https://dweb.link/api/v0/dag/get?arg={rootCID}"
 						target="_blank" >
-						{rootCID.toString()}</a> -->
-				<a href="https://cloudflare-ipfs.com/ipfs/{rootCID.toString()}" target="_blank">
-					{rootCID.toString()}
+						{rootCID}</a> -->
+				<a href="https://cloudflare-ipfs.com/ipfs/{rootCID}" target="_blank">
+					{rootCID}
 				</a>
 			</p>
 		{:catch error}
