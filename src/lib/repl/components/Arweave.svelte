@@ -11,7 +11,6 @@
 	import type { Transactions } from '$lib/utils';
 
 	export let serializedSource;
-	export let ar_price; // from load module up above
 	export let rootCID;
 
 	// export let details;
@@ -25,6 +24,8 @@
 
 	// const WINSTON_PER_AR = 1000000000000;
 	// let visible = true;
+
+	let ar_price; // from load module up above
 
 	let ready;
 	// let color = 'primary';
@@ -101,6 +102,7 @@
 
 			try {
 				console.log('Mining...');
+				await testWeave.mine(); // mine the contract
 				await testWeave.mine(); // mine the contract
 				console.log('Mined!');
 			} catch (error) {

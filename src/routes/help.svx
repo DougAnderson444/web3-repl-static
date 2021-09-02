@@ -25,3 +25,7 @@ Save your stuff to Web3! This is the decentralized internet. Places like [Arweav
 ## Adjust Splitscreen ↔️
 
 Move the left/right splitscreen by grabbing the middle 
+
+## Earn
+
+This app has been monetized to the W3R token. 

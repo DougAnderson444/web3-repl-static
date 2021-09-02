@@ -61,7 +61,6 @@
 	</Nav>
 </Navbar>
 <SolanaDashboard />
-<Arweave {serializedSource} bind:preview bind:publish />
 
 <style>
 	.super {

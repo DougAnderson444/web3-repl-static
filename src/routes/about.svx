@@ -4,17 +4,38 @@ title: About Web3 BUIDLER
 
 ---
 
-This is a Web3 app builder. 
+### Code is open source on [Github](https://github.com/DougAnderson444/web3-repl-static/)
 
-It works right in the browser! 
+## One click build + Deploy
 
-The idea here is to give you an easy way to create stuff on the web, and deploy it to Web 3.0
+This is a Web3 App REPL builder. It works right in the browser! 
 
-Reuse components from others (free & paid)! You can make your own from scratch or fork someone else's code. You can even embed other people's components into yours, by typing the following into your `App.svx`:
+The idea here is to give you an easy way to create stuff on the web, and deploy it to Web 3.0 with the click of a button.
+
+## Code Re-use
+
+Right now, you can make your single pages app  from scratch or fork someone else's code. 
+
+You can embed other people's components into yours, by typing the following into your `App.svx`:
 
 ```js
 // just add already made components
+// deployed by yourself or others to the internet
+// here are some web3 exampes:
+
+import Component from 'https://arweave.net/m4up8Ekc3fmNYr6zoxL...'
+// import Component from 'https://ipfs.io/QmHashhhhh...'
+
+// then use the component in the markdown
 <Component {properties} />
+
 ```
+
+Since the components are saved to Arweave, you know they'll always be there.
+
+## Tokenization
+
+The Tokenization feature allows you to control access to your app, components, or just part of your components using tokens.
+The idea is you need to hold the token in order to gain access to that digital asset.
 
 Check out the [/help](/help) page for more tips!

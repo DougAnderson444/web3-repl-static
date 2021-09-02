@@ -23,6 +23,7 @@
 	let type: string;
 	let pos: number;
 	let serializedSource: string;
+	let serializedModuleSource: string;
 	// let rootCID;
 	let compiled: string;
 	// let warnings, diagnostics;
@@ -187,9 +188,10 @@
 <div class="main">
 	<div class="contain" class:orientation>
 		<div class="top-half">
-			<Input {serializedSource} />
+			<Input {serializedSource} {serializedModuleSource} />
 		</div>
 		<div class="bottom-half">
+			<h2>⬇️ Edit this to customize your mini-app!</h2>
 			<SplitPane {type} {pos} {fixed}>
 				<section slot="a" style="height: 100%;">
 					{#if $components}

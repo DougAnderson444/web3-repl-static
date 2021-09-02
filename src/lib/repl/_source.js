@@ -7,9 +7,10 @@ export const getAppSvxCode = ({token}) =>{
 
 
 export const code_1 = `---
-title: Doug's Tokenization REPL
-author: Doug
-date: 27 August 2021
+---
+title: Web3 Tokenization REPL
+author: DougAnderson444
+date: 1 September 2021
 endpoint: devnet
 tokenKey: BFVp8duWGJTyEDzaDX9sVzJCDnikXp3LLpyuJ29pZLhv
 
@@ -33,27 +34,13 @@ let account = "2kNoPZhth7i9nRBQikdHUUYP9vx9FqPQP66zaQFDEtoU"; // example
 
 	**This REPL:** 
 
-	1. Wraps your asset in an Arweave display app which checks for the presence of the token in the requesting account. No free rides!
+	1. Wraps your asset in an Arweave display app which checks for the presence of the token in the requesting account. App Tokenization!
 	
-	2. The display app is saved in Arweave, thus the asset lives forever! The token is Solana SPL, so access lives forever!
-
-	2. Just hold the token type in order to access the asset!
+	2. The display app is saved in Arweave, thus the asset lives forever! The token is Solana SPL, so access lives forever! Arweave Tokens coming soon
 	
 	3. Don't hold the token? You don't have access or ownership!
 
-	**TODO:**
-
-	1. Connect wallets
-	2. Include a signed d-rand in the location.search params, check signature against the token account
-	3. "Click-to-mint" the access token on the fly (currently hard coded)
-	4. Encrypt the asset instead of just burying it in embeded javascript
-	5. Click-to-acquire token (Serum integration)
-	6. Add nicknames to tokens
-	7. Publish to mainnets (Solana and Arweave)
-
 </Layout>
-
-
 `
 
 export const code_2 = `<script>

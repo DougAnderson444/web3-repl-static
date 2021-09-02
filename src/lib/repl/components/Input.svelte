@@ -11,8 +11,11 @@
 	// export let saveStatus;
 	// export let rootCID;
 	export let serializedSource: string;
+	export let serializedModuleSource: string;
+
 	// export let diagnostics;
 	let rootCID;
+	let moduleRootCID;
 
 	const MAX_ID = 123456789;
 
@@ -49,7 +52,14 @@
 </script>
 
 <Tabs on:select={selectComponent} on:new={new_component} />
-<IPFSSaver {serializedSource} bind:rootCID />
+
+<!-- TODO -->
+<!-- // save the reusable component -->
+<!-- <IPFSSaver serializedSource={serializedModuleSource} rootCID={moduleRootCID} path={'index.js'} /> -->
+<!-- <Arweave serializedSource={serializedModuleSource} rootCID={moduleRootCID} /> -->
+
+<!-- save the app -->
+<IPFSSaver {serializedSource} bind:rootCID path={'index.html'} />
 <Arweave {serializedSource} {rootCID} />
 
 <!-- <Status {diagnostics} /> -->

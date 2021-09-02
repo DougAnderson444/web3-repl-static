@@ -8,6 +8,9 @@
 	import { is_browser } from '../js/env.js';
 
 	export let serializedSource;
+
+	export let path;
+
 	let saver;
 	export let rootCID;
 	let saveSrc;
@@ -18,7 +21,7 @@
 		saveSrc = async () => {
 			// console.log('serializedSource changed');
 			const result = await saver.add({
-				path: 'index.html',
+				path: path || 'index.html',
 				content: serializedSource
 			});
 			rootCID = result.cid.toString();
