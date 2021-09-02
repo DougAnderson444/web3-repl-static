@@ -1,3 +1,7 @@
+## Live Demo:
+
+https://syncs.info/
+
 ## Overview
 
 This sveltekit app allows us to build web3 app pages (SPA) in the browser through the browser REPL.
