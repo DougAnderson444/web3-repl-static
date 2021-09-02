@@ -1,6 +1,6 @@
 ## Live Demo:
 
-https://syncs.info/
+Demo coming soon
 
 ## Overview
 
