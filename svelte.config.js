@@ -51,8 +51,8 @@ const config = {
 		target: '#svelte',
 
 		// specifying a different adapter
-		// adapter: vercel(),
-		adapter: staticAdapter(),
+		adapter: vercel(),
+		// adapter: staticAdapter(),
 		vite: {
 			plugins: [
 				webWorkerLoader({
