@@ -1,8 +1,9 @@
 {
   "name": "web3-repl-static",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "svelte":"./package/",
   "module":"./package/",
+  "author": "Doug Anderson DougAnderson444@gmail.com",
   "scripts": {
     "dev3003": "npm run dev -- --open --port 3003",
     "dev": "svelte-kit dev",
