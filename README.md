@@ -11,10 +11,13 @@ The REPL accepts:
 
 ...then compiles into a single page app.
 
+- [ ] TODO: Save sub-components to Permaweb
+
 That can be saved/deployed to IPFS, pinned on the Arweave permaweb, and tokenized to Solana.
 
 - [x] IPFS
-- [x] Arweave 
+- [x] Arweave
+- [ ] Tokenize to Arweave 
 - [ ] Hypercore 
 - [ ] Linked as a [DID service](https://www.w3.org/TR/did-core/#dfn-service) 😉
 
