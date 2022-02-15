@@ -60,6 +60,6 @@
 
 <!-- save the app -->
 <IPFSSaver {serializedSource} bind:rootCID path={'index.html'} />
-<Arweave {serializedSource} {rootCID} />
+<!-- <Arweave {serializedSource} {rootCID} /> -->
 
 <!-- <Status {diagnostics} /> -->

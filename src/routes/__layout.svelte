@@ -12,22 +12,21 @@
 		global = globalThis; // for solana web3 repo
 	</script>
 </svelte:head>
-<Header />
 
 <main>
-	<slot />
-</main>
+	<Header />
 
-<footer>
-	<p>visit <a href="https://peerpiper.io">PeerPiper.io</a> to learn more about PeerPiper</p>
-</footer>
+	<slot />
+
+	<footer>
+		<p>visit <a href="https://peerpiper.io">PeerPiper.io</a> to learn more about PeerPiper</p>
+	</footer>
+</main>
 
 <style>
 	main {
-		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
 		width: 100%;
 		height: 100vh;
 		max-width: 1824px;

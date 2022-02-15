@@ -6,9 +6,7 @@
 
 <div class="iframe-container">
 	<div class="header">
-		{#if serializedSource}
-			Preview:
-		{:else}
+		{#if !serializedSource}
 			Compiling...
 		{/if}
 	</div>
@@ -19,8 +17,6 @@
 
 <style>
 	.header {
-		margin: 0.1em;
-		padding: 0.1em;
 		font-weight: 700;
 		font-size: 0.8rem;
 		text-transform: uppercase;
@@ -35,7 +31,6 @@
 		display: flex;
 		flex-direction: column;
 		border: 1px solid #a2a2a252;
-		padding: 1px;
 		-webkit-border-radius: 4px;
 		-moz-border-radius: 4px;
 		border-radius: 4px;

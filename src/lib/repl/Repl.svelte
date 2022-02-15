@@ -214,6 +214,8 @@
 	}
 	.bottom-half {
 		flex: 1;
+		display: flex;
+		flex-direction: column;
 		min-height: 200px;
 		border: 0px solid rgb(235, 235, 235);
 	}
