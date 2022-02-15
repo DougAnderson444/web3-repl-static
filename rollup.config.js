@@ -1,12 +1,8 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import livereload from 'rollup-plugin-livereload';
-import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import globals from 'rollup-plugin-node-globals'; // process.browser
-
-const production = !process.env.ROLLUP_WATCH;
 
 export default [
 	{
@@ -24,10 +20,6 @@ export default [
 			commonjs(),
 			globals(), // need to add for mdsvex !(process ).browser
 			typescript()
-		],
-		watch: {
-			clearScreen: false
-		},
-		onwarn
+		]
 	}
 ];
