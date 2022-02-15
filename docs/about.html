@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<link rel="icon" href="/web3-repl-static/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>About Web3 BUIDLER</title><script data-svelte="svelte-1yyo2jl">global = globalThis; // for solana web3 repo
+	</script><meta property="og:title" content="About Web3 BUIDLER" data-svelte="svelte-1t7mdn8"><meta property="og:image" data-svelte="svelte-1t7mdn8">
+	<link rel="stylesheet" href="/web3-repl-static/_app/assets/pages/__layout.svelte-f64e8a62.css">
+	<link rel="stylesheet" href="/web3-repl-static/_app/assets/article-eb4ebbdb.css">
+	<link rel="modulepreload" href="/web3-repl-static/_app/start-f66836e7.js">
+	<link rel="modulepreload" href="/web3-repl-static/_app/chunks/vendor-c2db68d3.js">
+	<link rel="modulepreload" href="/web3-repl-static/_app/chunks/preload-helper-2f498a32.js">
+	<link rel="modulepreload" href="/web3-repl-static/_app/pages/__layout.svelte-9eea4ae8.js">
+	<link rel="modulepreload" href="/web3-repl-static/_app/pages/about.svx-c6a7b0bd.js">
+	<link rel="modulepreload" href="/web3-repl-static/_app/chunks/article-9f1da159.js">
+	</head>
+	<body>
+		<div>
+
+
+
+
+<main class="svelte-xux67t"><header class="svelte-cg6had"><div class="corner svelte-cg6had"><a href="https://peerpiper.io" class="svelte-cg6had"><img src="/web3-repl-static/_app/assets/peerpiper-logo-1c2efbf6.svg" alt="SvelteKit" class="svelte-cg6had"></a></div>
+
+	<nav class="svelte-cg6had"><svg viewBox="0 0 2 3" aria-hidden="true" class="svelte-cg6had"><path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" class="svelte-cg6had"></path></svg>
+		<ul class="svelte-cg6had"><li class="svelte-cg6had"><a sveltekit:prefetch href="/" class="svelte-cg6had">Home</a></li>
+			<li class="svelte-cg6had"><a sveltekit:prefetch href="/repl" class="svelte-cg6had">Build</a></li>
+			<li class="svelte-cg6had"><a sveltekit:prefetch href="/about" class="svelte-cg6had">About</a></li>
+			<li class="svelte-cg6had"><a sveltekit:prefetch href="/help" class="svelte-cg6had">Help</a></li></ul>
+		<svg viewBox="0 0 2 3" aria-hidden="true" class="svelte-cg6had"><path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" class="svelte-cg6had"></path></svg></nav>
+
+	<div class="corner svelte-cg6had"></div>
+</header>
+
+	
+
+
+
+
+<article class="svelte-u9w8i9"><h1>About Web3 BUIDLER</h1>
+	<h3>Code is open source on <a href="https://github.com/DougAnderson444/web3-repl-static/" rel="nofollow">Github</a></h3>
+<h2>One click build + Deploy</h2>
+<p>This is a Web3 App REPL builder. It works right in the browser! </p>
+<p>The idea here is to give you an easy way to create stuff on the web, and deploy it to Web 3.0 with the click of a button.</p>
+<h2>Code Re-use</h2>
+<p>Right now, you can make your single pages app  from scratch or fork someone else’s code. </p>
+<p>You can embed other people’s components into yours, by typing the following into your <code>App.svx</code>:</p>
+<pre class="language-js"><!-- HTML_TAG_START --><code class="language-js"><span class="token comment">// just add already made components</span>
+<span class="token comment">// deployed by yourself or others to the internet</span>
+<span class="token comment">// here are some web3 exampes:</span>
+
+<span class="token keyword">import</span> Component <span class="token keyword">from</span> <span class="token string">'https://arweave.net/m4up8Ekc3fmNYr6zoxL...'</span>
+<span class="token comment">// import Component from 'https://ipfs.io/QmHashhhhh...'</span>
+
+<span class="token comment">// then use the component in the markdown</span>
+<span class="token operator">&lt;</span>Component <span class="token punctuation">&#123;</span>properties<span class="token punctuation">&#125;</span> <span class="token operator">/</span><span class="token operator">></span>
+</code><!-- HTML_TAG_END --></pre>
+<p>Since the components are saved to Arweave, you know they’ll always be there.</p>
+<h2>Tokenization</h2>
+<p>The Tokenization feature allows you to control access to your app, components, or just part of your components using tokens.
+The idea is you need to hold the token in order to gain access to that digital asset.</p>
+<p>Check out the <a href="/help">/help</a> page for more tips!</p>
+</article>
+
+	<footer class="svelte-xux67t"><p>visit <a href="https://peerpiper.io" class="svelte-xux67t">PeerPiper.io</a> to learn more about PeerPiper</p></footer>
+</main>
+
+
+		<script type="module" data-hydrate="sllrf">
+		import { start } from "/web3-repl-static/_app/start-f66836e7.js";
+		start({
+			target: document.querySelector('[data-hydrate="sllrf"]').parentNode,
+			paths: {"base":"/web3-repl-static","assets":"/web3-repl-static"},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [
+					import("/web3-repl-static/_app/pages/__layout.svelte-9eea4ae8.js"),
+						import("/web3-repl-static/_app/pages/about.svx-c6a7b0bd.js")
+				],
+				url: new URL("http://sveltekit-prerender/web3-repl-static/about"),
+				params: {}
+			}
+		});
+	</script></div>
+	</body>
+</html>
