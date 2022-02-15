@@ -1,6 +1,7 @@
 import sveltePreprocess  from 'svelte-preprocess';
 import vercel from '@sveltejs/adapter-vercel';
 import staticAdapter from '@sveltejs/adapter-static';
+import ipfsAdapter from 'sveltejs-adapter-ipfs'
 import { mdsvex } from 'mdsvex';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import rollupCommonjs from '@rollup/plugin-commonjs'
@@ -12,6 +13,8 @@ import builtins from 'rollup-plugin-node-builtins'
 // const pkg = require('./package.json')
 import { resolve } from 'path';
 import webWorkerLoader from 'rollup-plugin-web-worker-loader';
+
+const dev = process.env.NODE_ENV === 'development';
 
 function fixExternal() {
   return {
@@ -51,10 +54,19 @@ const config = {
 		target: '#svelte',
 
 		// specifying a different adapter
-		adapter: vercel(),
-		// adapter: staticAdapter(),
+		// adapter: ipfsAdapter(),
+		// adapter: vercel(),
+		adapter: staticAdapter{
+            pages: "docs",
+            assets: "docs"
+        }),
+		paths: {
+            // change below to your repo name
+            base: dev ? '' : '/web3-repl-static',
+        },
 		vite: {
 			plugins: [
+				viteCommonjs(), 
 				webWorkerLoader({
 					targetPlatform: 'auto',
 					sourcemap: false
@@ -64,7 +76,6 @@ const config = {
 					include: "**/token-pst.js",
 				}),
 				// rollupCommonjs(), // doesnt seem to work well
-				viteCommonjs(), 
 				globals(),
 				builtins()
 			],
