@@ -1,39 +1,16 @@
-import sveltePreprocess  from 'svelte-preprocess';
-import vercel from '@sveltejs/adapter-vercel';
+// build adapters
+import adapter from '@sveltejs/adapter-auto';
 import staticAdapter from '@sveltejs/adapter-static';
-import ipfsAdapter from 'sveltejs-adapter-ipfs'
+// import ipfsAdapter from 'sveltejs-adapter-ipfs';
+
+import sveltePreprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
-import rollupCommonjs from '@rollup/plugin-commonjs'
-import { string as moduleToString } from "rollup-plugin-string";
 
-import globals from 'rollup-plugin-node-globals'
-import builtins from 'rollup-plugin-node-builtins'
-
-// const pkg = require('./package.json')
-import { resolve } from 'path';
+// automate web worker build here:
 import webWorkerLoader from 'rollup-plugin-web-worker-loader';
+import { string as moduleToString } from 'rollup-plugin-string';
 
 const dev = process.env.NODE_ENV === 'development';
-
-function fixExternal() {
-  return {
-    name: 'fix-external',
-    setup(build) {
-      const { external } = build.initialOptions;
-      build.onResolve(
-        { filter: /^[\w@][^:]/ },
-        async ({ path: id, importer, kind, resolveDir }) => {
-          if (external && external.includes(id)) {
-            return {
-              path: id,
-              external: true
-            }
-          }
-        })
-    }
-  }
-}
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -41,57 +18,51 @@ const config = {
 	// for more information about preprocessors
 	extensions: ['.svelte', '.svx', '.md', '.svelte.md'],
 	preprocess: [
-		mdsvex({ 
-			extensions: ['.svx', '.md', '.svelte.md' ],
+		mdsvex({
+			extensions: ['.svx', '.md', '.svelte.md'],
 			layout: {
-				article: "./src/layouts/article.svelte", 
-				}
-			}),
+				article: './src/layouts/article.svelte'
+			}
+		}),
 		sveltePreprocess()
 	],
 	kit: {
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
-
-		// specifying a different adapter
-		// adapter: ipfsAdapter(),
-		// adapter: vercel(),
-		adapter: staticAdapter{
-            pages: "docs",
-            assets: "docs"
-        }),
+		adapter: staticAdapter({
+			pages: 'docs',
+			assets: 'docs'
+		}),
 		paths: {
-            // change below to your repo name
-            base: dev ? '' : '/web3-repl-static',
-        },
+			// change below to your repo name
+			base: dev ? '' : '/web3-repl-static'
+		},
 		vite: {
+			build: {
+				rollupOptions: {
+					// https://rollupjs.org/guide/en/#big-list-of-options
+					output: {
+						minifyInternalExports: false,
+						compact: false
+					},
+					plugins: []
+				},
+				minify: false,
+				sourcemap: true,
+				optimization: {
+					minimize: false
+				}
+			},
 			plugins: [
-				viteCommonjs(), 
-				webWorkerLoader({
-					targetPlatform: 'auto',
-					sourcemap: false
-				}),
+				// viteCommonjs(),
 				moduleToString({
 					// Required to be specified
-					include: "**/token-pst.js",
-				}),
-				// rollupCommonjs(), // doesnt seem to work well
-				globals(),
-				builtins()
+					include: '**/token-pst.js'
+				})
+				// globals(),
+				// builtins()
 			],
 			build: {
 				rollupOptions: {}
-			},
-			// optimizeDeps: {
-			// 	exclude: [
-			// 		// '@DougAnderson444/inline-source',
-			// 	],
-			// 	esbuildOptions: {
-			// 		plugins: [
-			// 			// fixExternal()
-			// 		],
-			// 	}
-			// }
+			}
 		}
 	}
 };
