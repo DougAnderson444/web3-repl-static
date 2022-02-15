@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Arweave from 'arweave';
-	import ArWallet from '$lib/ArWallet.svelte';
 	import { prepOrder, sendOrder } from '$lib/utils/index';
 
 	// import Notify from './Notify.svelte';
 	// import { inlineSource } from 'inline-source';
-	import { inlineSource } from '@DougAnderson444/inline-source';
+	import { inlineSource } from 'inline-source';
 	import { CONTRACT_ID, APP_WALLET } from '$lib/utils/constants';
 	import type { Transactions } from '$lib/utils';
 
@@ -189,8 +188,6 @@
 	<!-- Originally, the npm instal arweave wasnt working for web, so i had to do this: -->
 	<!-- <script src="https://unpkg.com/arweave/bundles/web.bundle.js"></script> -->
 </svelte:head>
-
-<ArWallet />
 
 {#if !published}
 	{#if !costPerGByte}

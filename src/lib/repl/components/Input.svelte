@@ -11,7 +11,7 @@
 	// export let saveStatus;
 	// export let rootCID;
 	export let serializedSource: string;
-	export let serializedModuleSource: string;
+	// export let serializedModuleSource: string;
 
 	// export let diagnostics;
 	let rootCID;

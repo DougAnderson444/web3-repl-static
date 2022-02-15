@@ -3,7 +3,6 @@
 </script>
 
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
 	import splash from '$lib/splash.svg';
 </script>
 

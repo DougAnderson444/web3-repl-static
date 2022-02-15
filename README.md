@@ -11,7 +11,7 @@ The REPL accepts:
 - [x] Markdown (MD)
 - [x] Markdown Svex (MDSVEX)
 - [x] Javascript (JS)
-- [x] Svelte 
+- [x] Svelte
 
 ...then compiles into a single page app.
 
@@ -21,12 +21,11 @@ That can be saved/deployed to IPFS, pinned on the Arweave permaweb, and tokenize
 
 - [x] IPFS
 - [x] Arweave
-- [ ] Tokenize to Arweave 
-- [ ] Hypercore 
+- [ ] Tokenize to Arweave
+- [ ] Hypercore
 - [ ] Linked as a [DID service](https://www.w3.org/TR/did-core/#dfn-service) 😉
 
-
-## Tokenization 
+## Tokenization
 
 Tokenization allows us to control ownership and access to assets. If you hold the token, you can be proven as the owner of something. If you hold the token, you can have the rights to access some asset.
 
@@ -38,7 +37,11 @@ Essentially, in a picture, the REPL enables this:
 
 Where access to the SPA is the "asset."
 
-## REPL is based on REPLicant from  Svelte Summit 2020
+## Dev note: Worker.ts
+
+Worker workeround: Need to build the worker.ts file with rollup -compile first (can't find a way to get sveltekit to build and output into static folder yet).
+
+## REPL is based on REPLicant from Svelte Summit 2020
 
 [https://github.com/pngwn/REPLicant](https://github.com/pngwn/REPLicant)
 

@@ -1,13 +1,11 @@
-let tokenKey = "5ipVLB12JskMNdVc7nUTzgBc2KSa6hRUnoWAVoUkWsKq"
+let tokenKey = '5ipVLB12JskMNdVc7nUTzgBc2KSa6hRUnoWAVoUkWsKq';
 
-export const getAppSvxCode = ({token}) =>{
-  tokenKey = token
-  return code_1
-}
-
+export const getAppSvxCode = ({ token }) => {
+	tokenKey = token;
+	return code_1;
+};
 
 export const code_1 = `---
----
 title: Web3 Tokenization REPL
 author: DougAnderson444
 date: 1 September 2021
@@ -41,7 +39,7 @@ let account = "2kNoPZhth7i9nRBQikdHUUYP9vx9FqPQP66zaQFDEtoU"; // example
 	3. Don't hold the token? You don't have access or ownership!
 
 </Layout>
-`
+`;
 
 export const code_2 = `<script>
   import { onMount } from "svelte"
@@ -148,7 +146,7 @@ Requires this Solana token to have access: <br />
     color: #815ad0;
   }
 </style>
-`
+`;
 export const code_3 = `<script>
   export let title;
   export let author;
@@ -178,7 +176,7 @@ export const code_3 = `<script>
 
 </section>
 
-`
+`;
 
 export const code_4 = `
 <div class="container">
@@ -202,4 +200,4 @@ export const code_4 = `
       margin: 0 auto;
   }
 </style>
-`
+`;
