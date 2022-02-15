@@ -14,9 +14,9 @@
 	<h1>
 		<div class="welcome">
 			Welcome to<br />Web3 BUILDR Repl<br />
-			<a sveltekit:prefetch href="/repl"> <img src={splash} alt="WEB3BUILDR" /></a>
+			<a sveltekit:prefetch href="./repl"> <img src={splash} alt="WEB3BUILDR" /></a>
 		</div>
-		<br />Start <strong><a sveltekit:prefetch href="/repl">BUILDING</a></strong>!!
+		<br />Start <strong><a sveltekit:prefetch href="./repl">BUILDING</a></strong>!!
 	</h1>
 </section>
 

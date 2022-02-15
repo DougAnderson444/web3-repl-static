@@ -15,15 +15,15 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
-			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.url.pathname === '/repl'}>
-				<a sveltekit:prefetch href="/repl">Build</a>
+			<li class:active={$page.url.pathname === './'}><a sveltekit:prefetch href="./">Home</a></li>
+			<li class:active={$page.url.pathname === './repl'}>
+				<a sveltekit:prefetch href="./repl">Build</a>
 			</li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a sveltekit:prefetch href="/about">About</a>
+			<li class:active={$page.url.pathname === './about'}>
+				<a sveltekit:prefetch href="./about">About</a>
 			</li>
-			<li class:active={$page.url.pathname === '/help'}>
-				<a sveltekit:prefetch href="/help">Help</a>
+			<li class:active={$page.url.pathname === './help'}>
+				<a sveltekit:prefetch href="./help">Help</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">

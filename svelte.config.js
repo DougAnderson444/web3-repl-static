@@ -10,8 +10,6 @@ import { mdsvex } from 'mdsvex';
 import webWorkerLoader from 'rollup-plugin-web-worker-loader';
 import { string as moduleToString } from 'rollup-plugin-string';
 
-const dev = process.env.NODE_ENV === 'development';
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
@@ -33,7 +31,7 @@ const config = {
 		}),
 		paths: {
 			// change below to your repo name
-			base: dev ? '' : '/web3-repl-static'
+			base: process.env.NODE_ENV === 'production' ? '/web3-repl-static' : ''
 		},
 		vite: {
 			build: {
