@@ -1,7 +1,7 @@
 // build adapters
 import adapter from '@sveltejs/adapter-auto';
 import staticAdapter from '@sveltejs/adapter-static';
-// import ipfsAdapter from 'sveltejs-adapter-ipfs';
+// import staticAdapter from 'sveltejs-adapter-ipfs';
 
 import sveltePreprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';

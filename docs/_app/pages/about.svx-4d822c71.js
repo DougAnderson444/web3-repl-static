@@ -1,4 +1,4 @@
-import{S as ve,i as Ee,s as Ae,C as ae,w as Te,x as xe,y as Ce,z as Pe,A as ye,q as $e,o as Re,B as je,T as ke,e as i,t as p,k as h,c as u,a as f,h as r,d as t,m as _,b as M,g as a,K as l,L as ze}from"../chunks/vendor-c2db68d3.js";import{A as He}from"../chunks/article-9f1da159.js";function Le(v){let s,y,m,w,n,c,E,H,A,N,L,T,Q,D,x,U,W,C,F,S,k,J,z,V,X,I,b,we=`<code class="language-js"><span class="token comment">// just add already made components</span>
+import{S as ve,i as Ee,s as Ae,C as ae,w as Te,x as xe,y as Ce,z as Pe,A as ye,q as $e,o as Re,B as je,T as ke,e as i,t as p,k as h,c as u,a as f,h as r,d as t,m as _,b as M,g as a,K as l,L as ze}from"../chunks/vendor-c2db68d3.js";import{A as He}from"../chunks/article-193c51fc.js";function Le(v){let s,y,m,w,n,c,E,H,A,N,L,T,Q,D,x,U,W,C,F,S,k,J,z,V,X,I,b,we=`<code class="language-js"><span class="token comment">// just add already made components</span>
 <span class="token comment">// deployed by yourself or others to the internet</span>
 <span class="token comment">// here are some web3 exampes:</span>
 
