@@ -1,6 +1,6 @@
 ## Live Demo:
 
-Demo coming soon
+[https://douganderson444.github.io/web3-repl-static/](https://douganderson444.github.io/web3-repl-static/)
 
 ## Overview
 
@@ -22,7 +22,7 @@ That can be saved/deployed to IPFS, pinned on the Arweave permaweb, and tokenize
 - [x] IPFS
 - [x] Arweave
 - [ ] Tokenize to Arweave
-- [ ] Hypercore
+- [ ] Pin to [PiperNet](https://www.npmjs.com/package/hypns-svelte-component)
 - [ ] Linked as a [DID service](https://www.w3.org/TR/did-core/#dfn-service) 😉
 
 ## Tokenization
